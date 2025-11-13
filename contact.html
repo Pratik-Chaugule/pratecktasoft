@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | PratecktaSoft - Request Consultation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Customizing Tailwind to match a professional blue/green IT aesthetic
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#007bff',       /* Main Blue */
+                        'secondary': '#6c757d',     /* Gray */
+                        'accent': '#28a745',        /* Bright Green (Success/CTA) */
+                        'dark-bg': '#1f2937',       /* Dark Gray for contrast sections */
+                        'light-bg': '#f3f4f6',      /* Light Gray for separation */
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                },
+            }
+        }
+    </script>
+    <style>
+        /* Custom Styles for enhanced visual effects and hover states */
+        .container {
+            max-width: 1280px;
+        }
+
+        /* Navbar active indicator effect */
+        .nav-link {
+            padding-bottom: 4px;
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #007bff;
+            transition: width 0.3s ease-in-out;
+        }
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+
+        /* Custom Hover Effect for Button (Lift and Shadow) */
+        .hover-lift {
+            transition: all 0.3s ease;
+        }
+        .hover-lift:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Mobile Menu styles */
+        .nav-menu {
+            display: none;
+        }
+        @media (max-width: 767px) {
+            .nav-menu.open {
+                display: flex;
+            }
+        }
+
+        /* --- ANIMATED CSS ADDITIONS --- */
+
+        /* 1. Subtle Fade-in and Lift Animation */
+        @keyframes fadeInMoveUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-on-load {
+            opacity: 0; /* Start hidden for animation */
+            animation: fadeInMoveUp 0.8s ease-out forwards;
+        }
+
+        /* Set delay for different sections */
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.3s; }
+        .delay-3 { animation-delay: 0.5s; }
+
+        /* 2. Pulse for the Submit Button */
+        @keyframes pulse-green {
+            0% {
+                box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.4); /* accent color with opacity */
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(40, 167, 69, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(40, 167, 69, 0);
+            }
+        }
+        
+        .btn-pulse {
+            animation: pulse-green 2s infinite;
+        }
+
+    </style>
+</head>
+<body class="font-sans antialiased text-gray-800 bg-light-bg">
+
+    <header class="sticky top-0 z-50 bg-white shadow-md">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center py-4">
+            <a href="index.html" class="text-3xl h-30 w-40 hover:zoom-in font-extrabold text-gray-900">
+                <img src="logo.png" alt="PratecktaSoft Logo">
+            </a>
+            <nav id="nav-links" class="hidden md:flex space-x-8">
+                <a href="index.html" class="nav-link mt-2 text-gray-600 hover:text-primary relative">Home</a>
+                <a href="about.html" class="nav-link mt-2 text-gray-600 hover:text-primary relative">About</a>
+                <a href="services.html" class="nav-link mt-2 text-gray-600 hover:text-primary relative">Services</a>
+                <a href="technology.html" class="nav-link mt-2 text-gray-600 hover:text-primary relative">Technology</a>
+                <a href="portfolio.html" class="nav-link mt-2 text-gray-600 hover:text-primary relative">Portfolio</a>
+                <a href="contact.html" class="w-full bg-accent text-white text-lg px-4 py-2 rounded-lg font-bold shadow-md hover:bg-dark-blue hover-lift focus:outline-none focus:ring-4 focus:ring-accent focus:ring-opacity-50 active">Contact Us</a>
+            </nav>
+            <button id="menu-toggle" class="md:hidden text-2xl text-gray-700 focus:outline-none">
+                &#9776;
+            </button>
+        </div>
+        <nav id="mobile-menu" class="nav-menu md:hidden flex-col absolute w-full bg-white shadow-lg py-2">
+            <a href="index.html" class="px-6 py-3 text-gray-700 hover:bg-light-bg block">Home</a>
+            <a href="about.html" class="px-6 py-3 text-gray-700 hover:bg-light-bg block">About</a>
+            <a href="services.html" class="px-6 py-3 text-gray-700 hover:bg-light-bg block">Services</a>
+            <a href="technology.html" class="px-6 py-3 text-gray-700 hover:bg-light-bg block">Technology</a>
+            <a href="portfolio.html" class="px-6 py-3 text-gray-700 hover:bg-light-bg block">Portfolio</a>
+            <a href="contact.html" class="px-6 py-3 bg-primary text-white hover:bg-dark-blue block transition duration-300">Contact Us</a>
+        </nav>
+    </header>
+
+    <section class="py-16 bg-white shadow-sm animate-on-load delay-1">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-4">Let's Connect</h1>
+            <p class="text-lg sm:text-xl text-secondary max-w-2xl mx-auto">
+                Whether you need a full-scale digital transformation or just an expert consultation, our team is ready to help you succeed.
+            </p>
+        </div>
+    </section>
+    
+    <section class="py-16">
+        <div class="container mx-auto px-3 sm:px-4 grid grid-cols-1 lg:grid-cols-3 gap-8 sm:gap-12">
+            
+            <div class="lg:col-span-1 p-6 lg:p-10 bg-white rounded-xl shadow-lg border-t-4 border-primary animate-on-load delay-2">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6">Contact Details</h2>
+                <p class="text-secondary mb-8">Reach out to our business development team through the quickest channel below.</p>
+
+                <div class="space-y-6">
+                    <div class="flex items-start">
+                        <span class="text-primary text-2xl mr-4 mt-1">📍</span>
+                        <div>
+                            <p class="font-bold text-gray-700">Our Location</p>
+                            <p class="text-secondary">123 Digital Blvd, Suite 400<br>Innovation City, TECH 90210</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="text-primary text-2xl mr-4 mt-1">📧</span>
+                        <div>
+                            <p class="font-bold text-gray-700">Email Us</p>
+                            <a href="mailto:contact@pratecktasofft.com" class="text-primary hover:text-accent transition duration-300">contact@pratecktasofft.com</a>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="text-primary text-2xl mr-4 mt-1">📞</span>
+                        <div>
+                            <p class="font-bold text-gray-700">Call Us</p>
+                            <a href="tel:+15551234567" class="text-primary hover:text-accent transition duration-300">+1 (555) 123-4567</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-10 p-6 bg-light-bg rounded-lg">
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Request a Free Consultation</h3>
+                    <p class="text-secondary text-sm">Need deep technical advice? Select the "Free Consultation" option in the form to schedule a 30-minute discovery call.</p>
+                </div>
+            </div>
+
+            <div class="lg:col-span-2 p-6 lg:p-10 bg-white rounded-xl shadow-lg animate-on-load delay-3">
+                <h2 class="text-3xl font-bold text-gray-900 mb-8">Send Us a Message</h2>
+                
+                <form id="contactForm" action="#" method="POST" class="space-y-6" autocomplete="off">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="firstName" class="block text-sm font-medium text-gray-700 mb-1">First Name</label>
+                            <input type="text" name="firstName" id="firstName" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary transition duration-200">
+                        </div>
+                        <div>
+                            <label for="lastName" class="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
+                            <input type="text" name="lastName" id="lastName" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary transition duration-200">
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                            <input type="email" name="email" id="email" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary transition duration-200">
+                        </div>
+                        <div>
+                            <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Phone Number (Optional)</label>
+                            <input type="tel" name="phone" id="phone" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary transition duration-200">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="company" class="block text-sm font-medium text-gray-700 mb-1">Company/Organization</label>
+                            <input type="text" name="company" id="company" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary transition duration-200">
+                        </div>
+                        <div>
+                            <label for="queryType" class="block text-sm font-medium text-gray-700 mb-1">How can we help?</label>
+                            <select id="queryType" name="queryType" required class="w-full p-3 border border-gray-300 rounded-lg bg-white focus:ring-primary focus:border-primary transition duration-200">
+                                <option value="project">New Project Inquiry</option>
+                                <option value="consultation">Request a Free Consultation (30 min)</option>
+                                <option value="support">Existing Client Support</option>
+                                <option value="career">Career/Partnership</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Your Message / Project Details</label>
+                        <textarea id="message" name="message" rows="5" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary transition duration-200"></textarea>
+                    </div>
+
+                    <button id="submitButton" type="submit" class="w-full bg-accent text-white text-lg px-8 py-3 rounded-lg font-bold shadow-md hover:bg-dark-blue hover-lift focus:outline-none focus:ring-4 focus:ring-accent focus:ring-opacity-50 btn-pulse">
+                        Submit Inquiry
+                    </button>
+                    
+                    <div id="statusMessage" class="hidden p-4 text-center rounded-lg font-medium" role="alert"></div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-3 sm:px-4 grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div>
+                <a href="index.html" class="text-2xl h-30 w-40 font-extrabold mb-4 block">
+                    <img src="logo-footer.png" alt="PratecktaSoft Footer Logo">
+                </a>
+                <p class="text-gray-400 text-sm">Smart, scalable, and secure IT solutions built for tomorrow’s world.</p>
+            </div>
+            
+            <div>
+                <h4 class="font-bold text-lg mb-4 text-primary">Quick Links</h4>
+                <ul class="space-y-2 text-sm text-gray-400">
+                    <li><a href="index.html#about" class="hover:text-white transition duration-300">About Us</a></li>
+                    <li><a href="index.html#services" class="hover:text-white transition duration-300">Services</a></li>
+                    <li><a href="index.html#stack" class="hover:text-white transition duration-300">Our Technology</a></li>
+                    <li><a href="index.html#portfolio" class="hover:text-white transition duration-300">Case Studies</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="font-bold text-lg mb-4 text-primary">Services</h4>
+                <ul class="space-y-2 text-sm text-gray-400">
+                    <li>Web Development</li>
+                    <li>Mobile Apps</li>
+                    <li>Cloud Consulting</li>
+                    <li>Custom CRM/ERP</li>
+                </ul>
+            </div>
+            
+            <div>
+                <h4 class="font-bold text-lg mb-4 text-primary">Contact Info</h4>
+                <p class="text-gray-400 text-sm mb-2">Email: contact@pratecktasoft.com</p>
+                <p class="text-gray-400 text-sm mb-4">Phone: +1 (555) 123-4567</p>
+                <div class="flex space-x-4 text-xl">
+                    <a href="#" class="hover:text-primary transition duration-300">FB</a>
+                    <a href="#" class="hover:text-primary transition duration-300">IN</a>
+                    <a href="#" class="hover:text-primary transition duration-300">GH</a>
+                </div>
+            </div>
+        </div>
+        <div class="container mx-auto px-3 sm:px-4 mt-8 pt-6 border-t border-gray-700 text-center">
+            <p class="text-sm text-gray-500">© 2025 PratecktaSoft. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuToggle = document.getElementById('menu-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const contactForm = document.getElementById('contactForm');
+            const submitButton = document.getElementById('submitButton'); 
+            const statusMessage = document.getElementById('statusMessage'); 
+
+            // Mobile Menu Toggle
+            if (menuToggle && mobileMenu) {
+                menuToggle.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('open');
+                });
+            }
+
+            // Function to explicitly clear the form fields
+            const clearFormFields = () => {
+                const fields = contactForm.querySelectorAll('input, select, textarea');
+                
+                fields.forEach(field => {
+                    if (field.type !== 'submit' && field.type !== 'button') {
+                        field.value = ''; // Set value to empty string
+                    }
+                });
+
+                // Reset the select box to the first option
+                const queryType = document.getElementById('queryType');
+                if (queryType) {
+                    queryType.value = 'project'; 
+                }
+            };
+
+            // Corrected Form Submission Handler
+            if (contactForm && submitButton) {
+                contactForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    
+                    // 1. Initial State: Show "Submitting"
+                    const originalText = 'Submit Inquiry'; 
+                    submitButton.textContent = 'Submitting...';
+                    submitButton.disabled = true;
+                    submitButton.classList.remove('btn-pulse'); 
+                    
+                    // Hide any previous message
+                    statusMessage.classList.add('hidden');
+                    statusMessage.className = 'p-4 text-center rounded-lg font-medium'; 
+
+                    // 2. Simulate API delay (1.5 seconds) - The "Submitting..." phase
+                    setTimeout(() => {
+                        
+                        // --- Transition to Success Message ---
+                        
+                        // Get message content
+                        const queryType = document.getElementById('queryType').value;
+                        let messageText;
+                        let messageClass;
+                        
+                        if (queryType === 'consultation') {
+                            messageText = 'Consultation Request Received! Thank you.';
+                            messageClass = 'bg-primary/10 text-primary border border-primary';
+                        } else {
+                            messageText = 'Thank you for your inquiry! We will respond shortly.';
+                            messageClass = 'bg-accent/10 text-accent border border-accent';
+                        }
+                        
+                        // A. Clear the form fields *NOW*
+                        clearFormFields(); 
+                        
+                        // B. Show the dedicated Thank You message
+                        statusMessage.textContent = messageText;
+                        statusMessage.classList.remove('hidden');
+                        statusMessage.classList.add(messageClass);
+
+                        // C. Update the button text to a success state
+                        // The button text should remain 'Submitting...' in this block until the final timeout.
+                        // I will set it to the original text here, but the user wants the button to refresh, 
+                        // so I'll change it back to 'Submit Inquiry' in the next step.
+
+                        // FIX: Change button to final state immediately here.
+                        submitButton.textContent = originalText;
+                        submitButton.disabled = false;
+                        submitButton.classList.add('btn-pulse');
+                        
+                        // 3. Final Reset Timeout (3 seconds for the message to disappear)
+                        // Wait 3 seconds, then hide the message.
+                        setTimeout(() => {
+                            // Hide the dedicated status message
+                            statusMessage.classList.add('hidden');
+                            
+                            // NOTE: Button is already reset to 'Submit Inquiry' in the previous step,
+                            // fulfilling the requirement for the button to reset after the submitting phase.
+                            
+                        }, 3000); // Message display duration (3 seconds)
+                        
+                    }, 1500); // Submitting phase duration (1.5 seconds)
+                });
+            }
+        });
+    </script>
+</body>
+</html>

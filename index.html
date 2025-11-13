@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PratecktaSoft | Next-Gen IT Solutions & Software Development</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <script>
+        // Customizing Tailwind to match a professional blue/green IT aesthetic
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#007bff',       /* Main Blue */
+                        'secondary': '#6c757d',     /* Gray */
+                        'accent': '#28a745',        /* Bright Green (Success/CTA) */
+                        'dark-bg': '#1f2937',       /* Dark Gray for contrast sections */
+                        'light-bg': '#f3f4f6',      /* Light Gray for separation */
+                        'dark-blue': '#0056b3',     /* Darker blue for hover state on primary button */
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                },
+            }
+        }
+    </script>
+    <style>
+         
+        /* Custom Styles for enhanced visual effects and hover states */
+        .container {
+            max-width: 1280px;
+        }
+
+        .hero-section {
+  position: relative;
+  background: url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  overflow: hidden;
+}
+
+/* Dark gradient overlay */
+.hero-section .overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0.85));
+  z-index: 1;
+}
+
+/* Text content */
+.hero-section .content {
+  position: relative;
+  z-index: 2;
+  max-width: 900px;
+  padding: 0 20px;
+}
+
+.hero-section .subtitle {
+  font-size: 1.25rem;
+  color: #00ff88;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.hero-section .title {
+  font-size: 3rem;
+  line-height: 1.2;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+}
+
+.hero-section .highlight {
+  color: #00ff88;
+}
+
+.hero-section .description {
+  font-size: 1.1rem;
+  color: #dcdcdc;
+  margin-bottom: 2rem;
+}
+
+.hero-section .cta {
+  background: #007bff;
+  color: white;
+  padding: 12px 30px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.hero-section .cta:hover {
+  background: #0056b3;
+}
+
+
+
+        .nav-link {
+            padding-bottom: 4px;
+            position: relative;
+            /* Added transition for text color */
+            transition: color 0.3s ease-in-out;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary, #007bff); /* Use custom property fallback */
+            transition: width 0.3s ease-in-out;
+        }
+
+        /* Navbar active indicator effect */
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+
+        /* Custom Hover Effect for Cards (Lift and Shadow) */
+        .hover-lift {
+            transition: all 0.3s ease;
+        }
+        .hover-lift:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Portfolio Overlay Effect */
+        .portfolio-overlay {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+        .portfolio-item img {
+            transition: transform 0.5s ease-in-out;
+        }
+        .portfolio-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        /* Mobile Menu styles */
+        .nav-menu {
+            display: none;
+        }
+        @media (max-width: 767px) {
+            .nav-menu.open {
+                display: flex;
+            }
+        }
+    </style>
+</head>
+<body class="font-sans antialiased text-gray-800">
+
+    <header class="sticky top-0 z-50 bg-white shadow-md">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center py-4">
+            <a href="#hero" class="text-3xl h-30 w-40 hover:zoom-in" data-aos="fade-right">
+                <img src="logo.png" alt="">
+            </a>
+            <nav id="nav-links" class="hidden md:flex space-x-8">
+                <a href="#hero" class="nav-link mt-2 text-gray-600 hover:text-primary relative active">Home</a>
+                <a href="about.html" class="nav-link mt-2 text-gray-600 hover:text-primary relative">About</a>
+                <a href="services.html" class="nav-link mt-2 text-gray-600 hover:text-primary relative">Services</a>
+                <a href="technology.html" class="nav-link mt-2 text-gray-600 hover:text-primary relative">Technology</a>
+                <a href="portfolio.html" class="nav-link mt-2 text-gray-600 hover:text-primary relative">Portfolio</a>
+                <a href="contact.html" class="w-full bg-accent text-white text-lg px-4 py-2 rounded-lg font-bold shadow-md hover:bg-dark-blue hover-lift focus:outline-none focus:ring-4 focus:ring-accent focus:ring-opacity-50 transition duration-300">Contact Us</a>
+            </nav>
+            <button id="menu-toggle" class="md:hidden text-2xl text-gray-700 focus:outline-none">
+                &#9776;
+            </button>
+        </div>
+        <nav id="mobile-menu" class="nav-menu md:hidden flex-col absolute w-full bg-white shadow-lg py-2">
+            <a href="#hero" class="px-6 py-3 text-gray-700 hover:bg-light-bg block active">Home</a>
+            <a href="about.html" class="px-6 py-3 text-gray-700 hover:bg-light-bg block">About</a>
+            <a href="services.html" class="px-6 py-3 text-gray-700 hover:bg-light-bg block">Services</a>
+            <a href="technology.html" class="px-6 py-3 text-gray-700 hover:bg-light-bg block">Technology</a>
+            <a href="portfolio.html" class="px-6 py-3 text-gray-700 hover:bg-light-bg block">Portfolio</a>
+            <a href="contact.html" class="px-6 py-3 bg-primary text-white hover:bg-dark-blue block transition duration-300">Contact Us</a>
+        </nav>
+    </header>
+
+    <section id="hero" class="hero-section">
+  <div class="overlay"></div>
+  <div class="content">
+    <p class="subtitle" data-aos="fade-down" data-aos-delay="100">
+      Your Trusted Partner in Digital Transformation
+    </p>
+    <h1 class="title" data-aos="fade-down" data-aos-delay="300">
+      Empowering Businesses with <span class="highlight">Next-Gen</span> IT Solutions
+    </h1>
+    <p class="description" data-aos="fade-up" data-aos-delay="500">
+      PratecktaSoft specializes in custom software development, mobile applications, cloud solutions, and enterprise modernization. 
+      We build seamless, scalable products that drive innovation and deliver measurable results.
+    </p>
+    <a href="contact.html" class="cta" data-aos="zoom-in" data-aos-delay="700">
+      Start Your Project Today →
+    </a>
+  </div>
+</section>
+
+
+
+
+    <section id="about" class="py-16 bg-white">
+        <div class="container mx-auto px-4 flex flex-col lg:flex-row items-center gap-12">
+            <div class="lg:w-1/2" data-aos="fade-right">
+                <p class="text-lg text-primary font-semibold mb-2">WHO WE ARE</p>
+                <h2 class="text-4xl font-bold text-gray-900 mb-6">A Passionate Team Driving Digital Success</h2>
+                <p class="text-secondary text-lg mb-6">
+                    Founded on the principles of **integrity, innovation, and client success**, PratecktaSoft is more than just a development house. We are strategic partners dedicated to understanding your business challenges and solving them with future-proof technology. Our agile approach ensures transparency and flexibility throughout the entire development lifecycle.
+                </p>
+                <ul class="space-y-3 text-gray-700 mb-8">
+                    <li class="flex items-center" data-aos="fade-up" data-aos-delay="100"><svg class="w-5 h-5 mr-2 text-accent" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>Custom Software Excellence</li>
+                    <li class="flex items-center" data-aos="fade-up" data-aos-delay="200"><svg class="w-5 h-5 mr-2 text-accent" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>Agile & Transparent Process</li>
+                    <li class="flex items-center" data-aos="fade-up" data-aos-delay="300"><svg class="w-5 h-5 mr-2 text-accent" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>Post-Launch Support & Optimization</li>
+                </ul>
+                <a href="about.html" class="text-primary font-semibold hover:text-accent transition duration-300">Meet the Leadership Team &rarr;</a>
+            </div>
+            <div class="lg:w-1/2 shadow-xl rounded-xl overflow-hidden hover-lift" data-aos="fade-left">
+                <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d" alt="About PratecktaSoft" class="w-full h-auto object-cover transition duration-500 ease-in-out">
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-light-bg">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-lg text-primary font-semibold mb-2" data-aos="fade-up">OUR COMMITMENT</p>
+            <h2 class="text-4xl font-bold text-gray-900 mb-12" data-aos="fade-up" data-aos-delay="100">The PratecktaSoft Advantage</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-white p-6 rounded-xl shadow-lg hover-lift" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="text-primary text-4xl mb-4">💡</div>
+                    <h3 class="text-xl font-bold mb-3">Industry Expertise</h3>
+                    <p class="text-secondary text-sm">Decades of combined experience across FinTech, Healthcare, E-commerce, and Logistics sectors.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg hover-lift" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="text-primary text-4xl mb-4">🏆</div>
+                    <h3 class="text-xl font-bold mb-3">Uncompromising Quality</h3>
+                    <p class="text-secondary text-sm">Rigorous QA procedures and automated testing to ensure a faultless user experience (UX).</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg hover-lift" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="text-primary text-4xl mb-4">☁️</div>
+                    <h3 class="text-xl font-bold mb-3">Cloud-Native Focus</h3>
+                    <p class="text-secondary text-sm">Specializing in highly scalable and cost-efficient architectures using AWS, Azure, and Google Cloud.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg hover-lift" data-aos="zoom-in" data-aos-delay="500">
+                    <div class="text-primary text-4xl mb-4">🛠️</div>
+                    <h3 class="text-xl font-bold mb-3">Dedicated Support</h3>
+                    <p class="text-secondary text-sm">Comprehensive maintenance plans and 24/7 technical support post-deployment.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="py-16 bg-white">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-lg text-primary font-semibold mb-2" data-aos="fade-up">WHAT WE BUILD</p>
+            <h2 class="text-4xl font-bold text-gray-900 mb-12" data-aos="fade-up" data-aos-delay="100">Our Core Solution Offerings</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-primary hover-lift" data-aos="fade-right" data-aos-delay="200">
+                    <div class="text-primary text-5xl mb-4">🌐</div>
+                    <h3 class="text-2xl font-bold mb-3">Web & SaaS Development</h3>
+                    <p class="text-secondary">Building custom, high-performance web applications and Software-as-a-Service platforms for global reach.</p>
+                    <a href="contact.html" class="text-primary font-medium mt-4 inline-block hover:text-accent transition duration-300">Learn more &rarr;</a>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-accent hover-lift" data-aos="fade-up" data-aos-delay="300">
+                    <div class="text-accent text-5xl mb-4">📱</div>
+                    <h3 class="text-2xl font-bold mb-3">Native & Hybrid Mobile Apps</h3>
+                    <p class="text-secondary">Delivering seamless Android and iOS experiences using React Native, Flutter, and native frameworks.</p>
+                    <a href="contact.html" class="text-primary font-medium mt-4 inline-block hover:text-accent transition duration-300">Learn more &rarr;</a>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-secondary hover-lift" data-aos="fade-left" data-aos-delay="400">
+                    <div class="text-secondary text-5xl mb-4">📊</div>
+                    <h3 class="text-2xl font-bold mb-3">Enterprise Systems (CRM/ERP)</h3>
+                    <p class="text-secondary">Customizing and integrating core business systems to automate workflows and optimize productivity.</p>
+                    <a href="contact.html" class="text-primary font-medium mt-4 inline-block hover:text-accent transition duration-300">Learn more &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="stack" class="py-16 bg-dark-bg text-white">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-lg text-accent font-semibold mb-2" data-aos="fade-up">MODERN STACK</p>
+            <h2 class="text-4xl font-bold text-white mb-12" data-aos="fade-up" data-aos-delay="100">Technologies We Master</h2>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+                <div class="p-4 rounded-lg bg-gray-700 hover-lift hover:bg-primary transition duration-300" data-aos="flip-up" data-aos-delay="100">
+                    <p class="text-2xl mb-1">⚛️</p>
+                    <p class="font-bold">React/Next.js</p>
+                </div>
+                <div class="p-4 rounded-lg bg-gray-700 hover-lift hover:bg-primary transition duration-300" data-aos="flip-up" data-aos-delay="200">
+                    <p class="text-2xl mb-1">🐍</p>
+                    <p class="font-bold">Python/Django</p>
+                </div>
+                <div class="p-4 rounded-lg bg-gray-700 hover-lift hover:bg-primary transition duration-300" data-aos="flip-up" data-aos-delay="300">
+                    <p class="text-2xl mb-1">☕</p>
+                    <p class="font-bold">Java/Spring</p>
+                </div>
+                <div class="p-4 rounded-lg bg-gray-700 hover-lift hover:bg-primary transition duration-300" data-aos="flip-up" data-aos-delay="400">
+                    <p class="text-2xl mb-1">☁️</p>
+                    <p class="font-bold">AWS/Azure</p>
+                </div>
+                <div class="p-4 rounded-lg bg-gray-700 hover-lift hover:bg-primary transition duration-300" data-aos="flip-up" data-aos-delay="500">
+                    <p class="text-2xl mb-1">🗄️</p>
+                    <p class="font-bold">PostgreSQL</p>
+                </div>
+                <div class="p-4 rounded-lg bg-gray-700 hover-lift hover:bg-primary transition duration-300" data-aos="flip-up" data-aos-delay="600">
+                    <p class="text-2xl mb-1">🐳</p>
+                    <p class="font-bold">Docker/K8s</p>
+                </div>
+            </div>
+            <p class="mt-10 text-gray-400" data-aos="fade-up" data-aos-delay="700">Our commitment to continuous learning ensures we always use the right tool for your specific challenge.</p>
+        </div>
+    </section>
+
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <p class="text-lg text-primary font-semibold text-center mb-2" data-aos="fade-up">HOW WE WORK</p>
+            <h2 class="text-4xl font-bold text-gray-900 text-center mb-12" data-aos="fade-up" data-aos-delay="100">Our Transparent 5-Step Agile Process</h2>
+
+            <div class="relative flex flex-col items-center">
+                <div class="hidden lg:block absolute h-full w-0.5 bg-light-bg left-1/2 transform -translate-x-1/2"></div>
+                
+                <div class="flex flex-col lg:flex-row w-full lg:w-3/4 items-center mb-16" data-aos="fade-right">
+                    <div class="lg:w-1/2 lg:pr-12 text-center lg:text-right mb-4 lg:mb-0">
+                        <h3 class="text-2xl font-bold text-primary">1. Discovery & Strategy</h3>
+                        <p class="text-secondary mt-2">We define project goals, user stories, technical requirements, and deliver a clear roadmap.</p>
+                    </div>
+                    <div class="relative w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white font-bold text-lg flex-shrink-0">1</div>
+                    <div class="lg:w-1/2 lg:pl-12"></div>
+                </div>
+
+                <div class="flex flex-col lg:flex-row w-full lg:w-3/4 items-center mb-16 lg:flex-row-reverse" data-aos="fade-left">
+                    <div class="lg:w-1/2 lg:pl-12 text-center lg:text-left mb-4 lg:mb-0">
+                        <h3 class="text-2xl font-bold text-primary">2. UX/UI Design</h3>
+                        <p class="text-secondary mt-2">Creating wireframes, mockups, and prototypes to ensure intuitive and engaging user experiences.</p>
+                    </div>
+                    <div class="relative w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white font-bold text-lg flex-shrink-0">2</div>
+                    <div class="lg:w-1/2 lg:pr-12"></div>
+                </div>
+
+                <div class="flex flex-col lg:flex-row w-full lg:w-3/4 items-center mb-16" data-aos="fade-right">
+                    <div class="lg:w-1/2 lg:pr-12 text-center lg:text-right mb-4 lg:mb-0">
+                        <h3 class="text-2xl font-bold text-primary">3. Agile Development</h3>
+                        <p class="text-secondary mt-2">Building and testing in sprints with continuous integration and deployment (CI/CD) for fast iteration.</p>
+                    </div>
+                    <div class="relative w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white font-bold text-lg flex-shrink-0">3</div>
+                    <div class="lg:w-1/2 lg:pl-12"></div>
+                </div>
+                
+                <div class="flex flex-col lg:flex-row w-full lg:w-3/4 items-center mb-16 lg:flex-row-reverse" data-aos="fade-left">
+                    <div class="lg:w-1/2 lg:pl-12 text-center lg:text-left mb-4 lg:mb-0">
+                        <h3 class="text-2xl font-bold text-primary">4. Launch & Scaling</h3>
+                        <p class="text-secondary mt-2">Full-scale deployment to cloud infrastructure, ensuring stability, security, and performance under load.</p>
+                    </div>
+                    <div class="relative w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white font-bold text-lg flex-shrink-0">4</div>
+                    <div class="lg:w-1/2 lg:pr-12"></div>
+                </div>
+
+                <div class="flex flex-col lg:flex-row w-full lg:w-3/4 items-center" data-aos="fade-right">
+                    <div class="lg:w-1/2 lg:pr-12 text-center lg:text-right mb-4 lg:mb-0">
+                        <h3 class="text-2xl font-bold text-primary">5. Maintenance & Support</h3>
+                        <p class="text-secondary mt-2">Ongoing monitoring, feature updates, bug fixes, and optimization to guarantee long-term success.</p>
+                    </div>
+                    <div class="relative w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white font-bold text-lg flex-shrink-0">5</div>
+                    <div class="lg:w-1/2 lg:pl-12"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio" class="py-16 bg-light-bg">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-lg text-primary font-semibold mb-2" data-aos="fade-up">CASE STUDIES</p>
+            <h2 class="text-4xl font-bold text-gray-900 mb-12" data-aos="fade-up" data-aos-delay="100">Recent Transformative Projects</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
+                <div class="portfolio-item relative rounded-xl overflow-hidden shadow-xl cursor-pointer" data-aos="flip-left">
+                    <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085" alt="Corporate Website" class="w-full h-72 object-cover transition duration-500 ease-in-out">
+                    <div class="portfolio-overlay absolute inset-0 bg-primary bg-opacity-80 flex flex-col justify-center items-center p-4">
+                        <p class="text-white text-2xl font-bold mb-1">Corporate FinTech Platform</p>
+                        <p class="text-white text-sm">Reduced transaction latency by 40%</p>
+                    </div>
+                </div>
+                <div class="portfolio-item relative rounded-xl overflow-hidden shadow-xl cursor-pointer" data-aos="flip-left" data-aos-delay="200">
+                    <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d" alt="Travel Booking System" class="w-full h-72 object-cover transition duration-500 ease-in-out">
+                    <div class="portfolio-overlay absolute inset-0 bg-accent bg-opacity-80 flex flex-col justify-center items-center p-4">
+                        <p class="text-white text-2xl font-bold mb-1">Next-Gen E-commerce App</p>
+                        <p class="text-white text-sm">Increased mobile conversions by 25%</p>
+                    </div>
+                </div>
+                <div class="portfolio-item relative rounded-xl overflow-hidden shadow-xl cursor-pointer" data-aos="flip-left" data-aos-delay="400">
+                    <img src="https://images.unsplash.com/photo-1521791055366-0d553872125f" class="w-full h-72 object-cover transition duration-500 ease-in-out">
+                    <div class="portfolio-overlay absolute inset-0 bg-secondary bg-opacity-80 flex flex-col justify-center items-center p-4">
+                        <p class="text-white text-2xl font-bold mb-1">Global Logistics Dashboard</p>
+                        <p class="text-white text-sm">Real-time asset tracking for 500+ users</p>
+                    </div>
+                </div>
+            </div>
+
+            <a href="contact.html" class="text-primary font-semibold hover:text-accent transition duration-300" data-aos="fade-up">View the Full Project Gallery &rarr;</a>
+        </div>
+    </section>
+
+    <section class="py-16 bg-primary">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-4xl font-bold text-white mb-12" data-aos="fade-up">What Our Clients Say</h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="bg-white p-8 rounded-xl shadow-2xl border-t-4 border-accent hover-lift" data-aos="zoom-in" data-aos-delay="200">
+                    <p class="text-xl italic text-gray-700 mb-6">“PratecktaSoft didn't just meet our requirements; they anticipated our needs, delivering a robust cloud platform that fundamentally changed our operational efficiency. Their team is world-class.”</p>
+                    <h4 class="text-lg font-bold text-primary">- Ananya Sharma, CEO of SkyTravel</h4>
+                    <p class="text-sm text-secondary">Aviation & Logistics</p>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-2xl border-t-4 border-accent hover-lift" data-aos="zoom-in" data-aos-delay="400">
+                    <p class="text-xl italic text-gray-700 mb-6">“The migration to their new CRM system was seamless. The project was on time, under budget, and the user adoption rate was nearly 100% due to the intuitive UI. Highly recommended.”</p>
+                    <h4 class="text-lg font-bold text-primary">- Rohan Mehta, CTO, Innovate Corp</h4>
+                    <p class="text-sm text-secondary">Technology & SaaS</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row items-center gap-12 p-8 bg-light-bg rounded-xl shadow-inner" data-aos="fade-up">
+                <div class="lg:w-1/3 text-center" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="text-primary text-6xl mb-4">🛡️</div>
+                    <h3 class="text-3xl font-bold text-gray-900">Security-First Development</h3>
+                </div>
+                <div class="lg:w-2/3" data-aos="fade-left" data-aos-delay="200">
+                    <p class="text-secondary text-lg mb-4">
+                        In the digital age, security is not an afterthought—it’s the foundation. We integrate **OWASP top 10 standards** and conduct comprehensive security audits at every stage of development.
+                    </p>
+                    <div class="grid grid-cols-2 gap-4">
+                        <p class="flex items-center text-gray-700 font-medium">
+                            <span class="text-accent text-xl mr-2">&check;</span> Data Encryption (At Rest & In Transit)
+                        </p>
+                        <p class="flex items-center text-gray-700 font-medium">
+                            <span class="text-accent text-xl mr-2">&check;</span> Compliance Audits (GDPR, HIPAA, etc.)
+                        </p>
+                        <p class="flex items-center text-gray-700 font-medium">
+                            <span class="text-accent text-xl mr-2">&check;</span> Penetration Testing
+                        </p>
+                        <p class="flex items-center text-gray-700 font-medium">
+                            <span class="text-accent text-xl mr-2">&check;</span> Continuous Vulnerability Monitoring
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-20 bg-primary">
+        <div class="container mx-auto px-4 text-center text-white" data-aos="zoom-out">
+            <h2 class="text-4xl font-bold mb-4">Ready to Transform Your Business?</h2>
+            <p class="text-xl mb-8 opacity-90">Let's discuss your vision and craft the perfect digital solution together.</p>
+            <a href="contact.html" class="inline-block bg-accent text-white text-lg px-10 py-4 rounded-full font-bold shadow-lg hover:bg-dark-blue transition duration-300 hover-lift">
+                Request a Free Consultation
+            </a>
+        </div>
+    </section>
+
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div data-aos="fade-up">
+                <a href="#hero" class="h-30 w-40 mb-4 inline-block hover:zoom-in">
+                    <img src="logo-footer.png" alt="">
+                </a>
+                <p class="text-gray-400 text-sm">Smart, scalable, and secure IT solutions built for tomorrow’s world.</p>
+            </div>
+            
+            <div data-aos="fade-up" data-aos-delay="100">
+                <h4 class="font-bold text-lg mb-4 text-primary">Quick Links</h4>
+                <ul class="space-y-2 text-sm text-gray-400">
+                    <li><a href="#about" class="hover:text-white transition duration-300">About Us</a></li>
+                    <li><a href="#services" class="hover:text-white transition duration-300">Services</a></li>
+                    <li><a href="#portfolio" class="hover:text-white transition duration-300">Case Studies</a></li>
+                    <li><a href="#stack" class="hover:text-white transition duration-300">Our Technology</a></li>
+                </ul>
+            </div>
+
+            <div data-aos="fade-up" data-aos-delay="200">
+                <h4 class="font-bold text-lg mb-4 text-primary">Services</h4>
+                <ul class="space-y-2 text-sm text-gray-400">
+                    <li>Web Development</li>
+                    <li>Mobile Apps</li>
+                    <li>Cloud Consulting</li>
+                    <li>Custom CRM/ERP</li>
+                </ul>
+            </div>
+            
+            <div data-aos="fade-up" data-aos-delay="300">
+                <h4 class="font-bold text-lg mb-4 text-primary">Contact Info</h4>
+                <p class="text-gray-400 text-sm mb-2">Email: contact@pratecktasoft.com</p>
+                <p class="text-gray-400 text-sm mb-4">Phone: +1 (555) 123-4567</p>
+                <div class="flex space-x-4 text-xl">
+                    <a href="#" class="hover:text-primary transition duration-300">FB</a>
+                    <a href="#" class="hover:text-primary transition duration-300">IN</a>
+                    <a href="#" class="hover:text-primary transition duration-300">GH</a>
+                </div>
+            </div>
+        </div>
+        <div class="container mx-auto px-4 mt-8 pt-6 border-t border-gray-700 text-center">
+            <p class="text-sm text-gray-500">© 2025 PratecktaSoft. All rights reserved. | Built with Passion & Code.</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS after DOM is loaded
+        AOS.init({
+            duration: 800,      // Animation duration
+            once: true,         // Whether animation should only happen once - important for a clean look
+            mirror: false,      // Whether elements should animate out while scrolling past them
+        });
+        
+        // Existing JavaScript for Mobile Menu Toggle and Smooth Scrolling
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuToggle = document.getElementById('menu-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const navLinks = document.querySelectorAll('#mobile-menu a, #nav-links a');
+            
+            // Toggle Mobile Menu
+            if (menuToggle && mobileMenu) {
+                menuToggle.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('open');
+                });
+            }
+
+            // Handle link clicks (smooth scroll & close mobile menu)
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    const href = link.getAttribute('href');
+                    
+                    // Check if the link is an internal anchor link (starts with # and is not just '#')
+                    if (href && href.startsWith('#') && href.length > 1) {
+                        const targetId = href.substring(1);
+                        const targetElement = document.getElementById(targetId);
+
+                        if (targetElement) {
+                            e.preventDefault();
+                            targetElement.scrollIntoView({ behavior: 'smooth' });
+                        }
+                    }
+                    
+                    // Close mobile menu if it's open, regardless of link type
+                    if (mobileMenu && mobileMenu.classList.contains('open')) {
+                        mobileMenu.classList.remove('open');
+                    }
+                });
+            });
+            
+            // Highlight active link based on scroll position
+            const sections = document.querySelectorAll('section[id]');
+            window.addEventListener('scroll', () => {
+                let current = '';
+                // Adjusted offset for sticky header
+                const scrollY = window.pageYOffset + 70; 
+
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop; 
+                    const sectionHeight = section.clientHeight;
+                    if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                document.querySelectorAll('.nav-link').forEach(a => {
+                    // Only apply 'active' class to internal navigation links (not external ones like contact.html)
+                    if (a.getAttribute('href').startsWith('#')) {
+                        a.classList.remove('active');
+                        if (a.getAttribute('href').substring(1) === current) {
+                            a.classList.add('active');
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

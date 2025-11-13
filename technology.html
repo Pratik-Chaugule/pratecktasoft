@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Technology Stack - PratecktaSoft</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Customizing Tailwind to match a professional blue/green IT aesthetic
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#007bff',       /* Main Blue */
+                        'secondary': '#6c757d',     /* Gray */
+                        'accent': '#28a745',        /* Bright Green (Success/CTA) */
+                        'dark-bg': '#1f2937',       /* Dark Gray for contrast sections */
+                        'light-bg': '#f3f4f6',      /* Light Gray for separation */
+                        'dark-blue': '#0056b3',     /* Darker shade of primary for hover */
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                },
+            }
+        }
+    </script>
+    <style>
+        /* Custom Styles */
+        .container {
+            max-width: 1280px;
+        }
+
+        /* Navbar active indicator effect - Current page is 'Technology' */
+        .nav-link {
+            padding-bottom: 4px;
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #007bff;
+            transition: width 0.3s ease-in-out;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        #nav-home.active::after,
+        #nav-about.active::after,
+        #nav-services.active::after,
+        #nav-tech.active::after {
+            width: 100%;
+        }
+
+        /* Custom Hover Effect for Button (Lift and Shadow) */
+        .hover-lift {
+            transition: all 0.3s ease;
+        }
+        .hover-lift:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Mobile Menu styles */
+        .nav-menu {
+            display: none;
+        }
+        @media (max-width: 767px) {
+            .nav-menu.open {
+                display: flex;
+            }
+        }
+
+        /* --- ADVANCED ANIMATED CSS (Shared across all pages) --- */
+        @keyframes fadeInMoveUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes zoomInFade { from { opacity: 0; transform: scale(0.85); } to { opacity: 1; transform: scale(1); } }
+        @keyframes slideInLeft { from { opacity: 0; transform: translateX(-50px); } to { opacity: 1; transform: translateX(0); } }
+        @keyframes slideInRight { from { opacity: 0; transform: translateX(50px); } to { opacity: 1; transform: translateX(0); } }
+
+        .animate-on-load { opacity: 0; animation: fadeInMoveUp 0.8s ease-out forwards; }
+        .animate-zoom-in { opacity: 0; animation: zoomInFade 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; }
+        .animate-slide-left { opacity: 0; animation: slideInLeft 0.8s ease-out forwards; }
+        .animate-slide-right { opacity: 0; animation: slideInRight 0.8s ease-out forwards; }
+        
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.3s; }
+        .delay-3 { animation-delay: 0.5s; }
+        .delay-4 { animation-delay: 0.7s; }
+        .delay-5 { animation-delay: 0.9s; }
+        .delay-6 { animation-delay: 1.1s; }
+        .delay-7 { animation-delay: 1.3s; }
+        .delay-8 { animation-delay: 1.5s; }
+
+        /* Custom styling for Python logo SVG to control its size better */
+        .tech-logo {
+            width: 64px; /* Set a consistent width */
+            height: 64px; /* Set a consistent height */
+            object-fit: contain;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased text-gray-800 bg-light-bg">
+
+    <header class="sticky top-0 z-50 bg-white shadow-md">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center py-4">
+            <a href="index.html" class="text-3xl h-30 w-40 hover:zoom-in font-extrabold text-gray-900">
+                <img src="logo.png" alt="">
+            </a>
+            <nav id="nav-links" class="hidden md:flex space-x-8 items-center">
+                <a href="index.html" id="nav-home" class="nav-link mt-2 text-gray-600 hover:text-primary relative">Home</a>
+                <a href="about.html" id="nav-about" class="nav-link mt-2 text-gray-600 hover:text-primary relative">About</a>
+                <a href="services.html" id="nav-services" class="nav-link mt-2 text-gray-600 hover:text-primary relative">Services</a>
+                <a href="technology.html" id="nav-tech" class="nav-link active mt-2 text-gray-600 hover:text-primary relative">Technology</a>
+                <a href="portfolio.html" id="nav-portfolio" class="nav-link mt-2 text-gray-600 hover:text-primary relative">Portfolio</a>
+                <a href="contact.html" class="bg-accent text-white text-lg px-4 py-2 rounded-lg font-bold shadow-md hover:bg-dark-blue hover-lift focus:outline-none focus:ring-4 focus:ring-accent focus:ring-opacity-50 transition duration-300">Contact Us</a>
+            </nav>
+            <button id="menu-toggle" class="md:hidden text-2xl text-gray-700 focus:outline-none">
+                &#9776;
+            </button>
+        </div>
+        <nav id="mobile-menu" class="nav-menu md:hidden flex-col absolute w-full bg-white shadow-lg py-2">
+            <a href="index.html" class="px-6 py-3 text-gray-700 hover:bg-light-bg block">Home</a>
+            <a href="about.html" class="px-6 py-3 text-gray-700 hover:bg-light-bg block">About</a>
+            <a href="services.html" class="px-6 py-3 text-gray-700 hover:bg-light-bg block">Services</a>
+            <a href="technology.html" class="px-6 py-3 text-gray-700 bg-light-bg block">Technology</a>
+            <a href="portfolio.html" class="px-6 py-3 text-gray-700 hover:bg-light-bg block">Portfolio</a>
+            <a href="contact.html" class="px-6 py-3 bg-primary text-white hover:bg-dark-blue block transition duration-300">Contact Us</a>
+        </nav>
+    </header>
+
+    <section class="bg-dark-bg py-24">
+        <div class="container mx-auto px-4 text-center animate-on-load delay-1">
+            <p class="text-primary font-semibold text-lg mb-3">OUR CORE CAPABILITIES</p>
+            <h1 class="text-4xl sm:text-6xl font-extrabold text-white">
+                The Technologies Powering Your Success
+            </h1>
+            <p class="text-lg text-gray-400 max-w-4xl mx-auto mt-4">
+                We harness cutting-edge technologies and industry best practices to build secure, scalable, and innovative solutions.
+            </p>
+        </div>
+    </section>
+
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4 md:px-8 space-y-16">
+            
+            
+            <div class="border-b pb-12">
+                <p class="text-accent font-semibold text-xl mb-2 animate-on-load delay-1">FOUNDATIONAL LANGUAGES</p>
+                <h2 class="text-4xl font-bold text-gray-900 mb-8 animate-on-load delay-2">Versatility in Every Line of Code</h2>
+                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6">
+                    <div class="p-6 bg-light-bg rounded-lg shadow-md flex flex-col items-center justify-center hover:bg-primary/10 transition duration-300 hover-lift animate-zoom-in delay-3">
+                        <img src="https://img.icons8.com/?size=96&id=Rc0Xn5AtE8kX&format=gif&color=f7f7f7" alt="Python Logo" class="mx-auto mb-3 tech-logo">
+                        <p class="font-bold text-gray-700">Python</p>
+                    </div>
+                    <div class="p-6 bg-light-bg rounded-lg shadow-md flex flex-col items-center justify-center hover:bg-primary/10 transition duration-300 hover-lift animate-zoom-in delay-4">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg" alt="Node.js Logo" class="mx-auto mb-3 tech-logo"><p class="font-bold text-gray-700">Node.js</p>
+                    </div>
+                    <div class="p-6 bg-light-bg rounded-lg shadow-md flex flex-col items-center justify-center hover:bg-primary/10 transition duration-300 hover-lift animate-zoom-in delay-5">
+                        <img src="https://img.icons8.com/?size=96&id=GPfHz0SM85FX&format=gif&color=f7f7f7" alt="Java Logo" class="mx-auto mb-3 tech-logo"><p class="font-bold text-gray-700">Java</p>
+                    </div>
+                    <div class="p-6 bg-light-bg rounded-lg shadow-md flex flex-col items-center justify-center hover:bg-primary/10 transition duration-300 hover-lift animate-zoom-in delay-6">
+                        <img src="https://img.icons8.com/?size=128&id=JybIpZjjXT0F&format=png" alt="PHP Logo" class="mx-auto mb-3 tech-logo"><p class="font-bold text-gray-700">PHP</p>
+                    </div>
+                    <div class="p-6 bg-light-bg rounded-lg shadow-md flex flex-col items-center justify-center hover:bg-primary/10 transition duration-300 hover-lift animate-zoom-in delay-7">
+                        <img src="https://img.icons8.com/?size=128&id=7ej5ASIwdQXG&format=png" alt="Go Lang Logo" class="mx-auto mb-3 tech-logo"><p class="font-bold text-gray-700">Go</p>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="border-b pb-12">
+                <p class="text-accent font-semibold text-xl mb-2 animate-on-load delay-1">DYNAMIC USER INTERFACES</p>
+                <h2 class="text-4xl font-bold text-gray-900 mb-8 animate-on-load delay-2">Crafting Intuitive Web Experiences</h2>
+                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
+                    <div class="p-6 bg-light-bg rounded-lg shadow-md flex flex-col items-center justify-center hover:bg-primary/10 transition duration-300 hover-lift animate-zoom-in delay-3">
+                        <img src="https://img.icons8.com/?size=100&id=YYYhFVbH4vFv&format=gif&color=f7f7f7" alt="React Logo" class="mx-auto mb-3 tech-logo"><p class="font-bold text-gray-700">React</p>
+                    </div>
+                    <div class="p-6 bg-light-bg rounded-lg shadow-md flex flex-col items-center justify-center hover:bg-primary/10 transition duration-300 hover-lift animate-zoom-in delay-4">
+                        <img src="https://img.icons8.com/?size=128&id=tbleCw0ch6QC&format=png" alt="Vue.js Logo" class="mx-auto mb-3 tech-logo"><p class="font-bold text-gray-700">Vue.js</p>
+                    </div>
+                    <div class="p-6 bg-light-bg rounded-lg shadow-md flex flex-col items-center justify-center hover:bg-primary/10 transition duration-300 hover-lift animate-zoom-in delay-5">
+                        <img src="https://img.icons8.com/?size=96&id=71257&format=png" alt="Angular Logo" class="mx-auto mb-3 tech-logo"><p class="font-bold text-gray-700">Angular</p>
+                    </div>
+                    <div class="p-6 bg-light-bg rounded-lg shadow-md flex flex-col items-center justify-center hover:bg-primary/10 transition duration-300 hover-lift animate-zoom-in delay-6">
+                        <img src="https://img.icons8.com/?size=96&id=MWiBjkuHeMVq&format=png" alt="Next.js Logo" class="mx-auto mb-3 tech-logo"><p class="font-bold text-gray-700">Next.js</p>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="border-b pb-12">
+                <p class="text-accent font-semibold text-xl mb-2 animate-on-load delay-1">SCALABLE INFRASTRUCTURE</p>
+                <h2 class="text-4xl font-bold text-gray-900 mb-8 animate-on-load delay-2">Cloud-Native & Automated Deployment</h2>
+                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6">
+                    <div class="p-6 bg-light-bg rounded-lg shadow-md flex flex-col items-center justify-center hover:bg-primary/10 transition duration-300 hover-lift animate-zoom-in delay-3">
+                        <img src="https://img.icons8.com/?size=96&id=33039&format=png" alt="AWS Logo" class="mx-auto mb-3 tech-logo"><p class="font-bold text-gray-700">AWS</p>
+                    </div>
+                    <div class="p-6 bg-light-bg rounded-lg shadow-md flex flex-col items-center justify-center hover:bg-primary/10 transition duration-300 hover-lift animate-zoom-in delay-4">
+                        <img src="https://img.icons8.com/?size=96&id=VLKafOkk3sBX&format=png" alt="Azure Logo" class="mx-auto mb-3 tech-logo"><p class="font-bold text-gray-700">Azure</p>
+                    </div>
+                    <div class="p-6 bg-light-bg rounded-lg shadow-md flex flex-col items-center justify-center hover:bg-primary/10 transition duration-300 hover-lift animate-zoom-in delay-5">
+                        <img src="https://img.icons8.com/?size=96&id=WHRLQdbEXQ16&format=png" alt="GCP Logo" class="mx-auto mb-3 tech-logo"><p class="font-bold text-gray-700">GCP</p>
+                    </div>
+                    <div class="p-6 bg-light-bg rounded-lg shadow-md flex flex-col items-center justify-center hover:bg-primary/10 transition duration-300 hover-lift animate-zoom-in delay-6">
+                        <img src="https://img.icons8.com/?size=96&id=22813&format=png" alt="Docker Logo" class="mx-auto mb-3 tech-logo"><p class="font-bold text-gray-700">Docker</p>
+                    </div>
+                    <div class="p-6 bg-light-bg rounded-lg shadow-md flex flex-col items-center justify-center hover:bg-primary/10 transition duration-300 hover-lift animate-zoom-in delay-7">
+                        <img src="https://img.icons8.com/?size=96&id=cvzmaEA4kC0o&format=png" alt="Kubernetes Logo" class="mx-auto mb-3 tech-logo"><p class="font-bold text-gray-700">Kubernetes</p>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div>
+                <p class="text-accent font-semibold text-xl mb-2 animate-on-load delay-1">ROBUST DATA MANAGEMENT</p>
+                <h2 class="text-4xl font-bold text-gray-900 mb-8 animate-on-load delay-2">Secure & Efficient Data Storage</h2>
+                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
+                    <div class="p-6 bg-light-bg rounded-lg shadow-md flex flex-col items-center justify-center hover:bg-primary/10 transition duration-300 hover-lift animate-zoom-in delay-3">
+                        <img src="https://img.icons8.com/?size=160&id=LwQEs9KnDgIo&format=png" alt="PostgreSQL Logo" class="mx-auto mb-3 tech-logo"><p class="font-bold text-gray-700">PostgreSQL</p>
+                    </div>
+                    <div class="p-6 bg-light-bg rounded-lg shadow-md flex flex-col items-center justify-center hover:bg-primary/10 transition duration-300 hover-lift animate-zoom-in delay-4">
+                        <img src="https://img.icons8.com/?size=96&id=UFXRpPFebwa2&format=png" alt="MySQL Logo" class="mx-auto mb-3 tech-logo"><p class="font-bold text-gray-700">MySQL</p>
+                    </div>
+                    <div class="p-6 bg-light-bg rounded-lg shadow-md flex flex-col items-center justify-center hover:bg-primary/10 transition duration-300 hover-lift animate-zoom-in delay-5">
+                        <img src="https://img.icons8.com/?size=160&id=8rKdRqZFLurS&format=png" alt="MongoDB Logo" class="mx-auto mb-3 tech-logo"><p class="font-bold text-gray-700">MongoDB</p>
+                    </div>
+                    <div class="p-6 bg-light-bg rounded-lg shadow-md flex flex-col items-center justify-center hover:bg-primary/10 transition duration-300 hover-lift animate-zoom-in delay-6">
+                        <img src="https://img.icons8.com/?size=96&id=pHS3eRpynIRQ&format=png" alt="Redis Logo" class="mx-auto mb-3 tech-logo"><p class="font-bold text-gray-700">Redis</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="py-16 bg-primary">
+        <div class="container mx-auto px-4 md:px-8 text-center animate-on-load delay-7">
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-white mb-4">Leverage Our Expertise for Your Next Project.</h2>
+            <p class="text-xl text-white/80 max-w-3xl mx-auto mb-8">
+                Our deep understanding of these technologies ensures your solutions are built to last and scale.
+            </p>
+            <a href="contact.html" class="inline-block bg-accent text-white text-xl px-8 py-3 rounded-lg font-bold shadow-xl hover:bg-dark-blue hover-lift focus:outline-none focus:ring-4 focus:ring-accent focus:ring-opacity-50 transition duration-300">
+                Discuss Your Tech Needs
+            </a>
+        </div>
+    </section>
+
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div>
+                <a href="index.html" class="text-2xl h-30 w-40 font-extrabold mb-4 block">
+                    <img src="logo-footer.png" alt="">
+                </a>
+                <p class="text-gray-400 text-sm">Smart, scalable, and secure IT solutions built for tomorrow’s world.</p>
+            </div>
+            
+            <div>
+                <h4 class="font-bold text-lg mb-4 text-primary">Quick Links</h4>
+                <ul class="space-y-2 text-sm text-gray-400">
+                    <li><a href="about.html" class="hover:text-white transition duration-300">About Us</a></li>
+                    <li><a href="services.html" class="hover:text-white transition duration-300">Services</a></li>
+                    <li><a href="technology.html" class="hover:text-white transition duration-300">Our Technology</a></li>
+                    <li><a href="index.html#portfolio" class="hover:text-white transition duration-300">Case Studies</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="font-bold text-lg mb-4 text-primary">Services</h4>
+                <ul class="space-y-2 text-sm text-gray-400">
+                    <li>Web Development</li>
+                    <li>Mobile Apps</li>
+                    <li>Cloud Consulting</li>
+                    <li>Custom CRM/ERP</li>
+                </ul>
+            </div>
+            
+            <div>
+                <h4 class="font-bold text-lg mb-4 text-primary">Contact Info</h4>
+                <p class="text-gray-400 text-sm mb-2">Email: contact@pratecktasoft.com</p>
+                <p class="text-gray-400 text-sm mb-4">Phone: +1 (555) 123-4567</p>
+                <div class="flex space-x-4 text-xl">
+                    <a href="#" class="hover:text-primary transition duration-300">FB</a>
+                    <a href="#" class="hover:text-primary transition duration-300">IN</a>
+                    <a href="#" class="hover:text-primary transition duration-300">GH</a>
+                </div>
+            </div>
+        </div>
+        <div class="container mx-auto px-4 mt-8 pt-6 border-t border-gray-700 text-center">
+            <p class="text-sm text-gray-500">© 2025 PratecktaSoft. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuToggle = document.getElementById('menu-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            if (menuToggle && mobileMenu) {
+                menuToggle.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('open');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
